@@ -1,5 +1,3 @@
-#define  _CRT_SECURE_NO_WARNINGS
-
 #include <string>
 #include <urlmon.h>
 #include <iostream>
@@ -15,21 +13,20 @@
 #include <tchar.h>
 
 
+/*** ç”Ÿæˆæ•°æ®å¤„ç† ***/
 
-/*** Éú³ÉÊı¾İ´¦Àí ***/
-
-//¸÷ÖÖÔËËã·ûºÅÓÃLaTeX¹«Ê½±íÊ¾µÄĞÎÊ½
+//å„ç§è¿ç®—ç¬¦å·ç”¨LaTeXå…¬å¼è¡¨ç¤ºçš„å½¢å¼
 std::string Operator[7] = { "+","-","\\times","\\div","=","(",")" };
 
-//ÓÃÓÚÉú³ÉÕûÊıµÄÌâÄ¿
+//ç”¨äºç”Ÿæˆæ•´æ•°çš„é¢˜ç›®
 std::vector<std::vector<int> >  naturalNumber(int n, int l, int r)
 {
-    //³õÊ¼»¯Ëæ»úÊıÉú³ÉÆ÷
+    //åˆå§‹åŒ–éšæœºæ•°ç”Ÿæˆå™¨
     srand(static_cast<unsigned int>(time(nullptr)));
     if (l > r) std::swap(l, r);
-    //ÓÃmapÈİÆ÷À´±ê¼ÇÃ¿Ò»¸öÓÃ¹ıµÄÌâÄ¿£¬ÒÔ´ïµ½²»ÖØ¸´µÄĞ§¹û
+    //ç”¨mapå®¹å™¨æ¥æ ‡è®°æ¯ä¸€ä¸ªç”¨è¿‡çš„é¢˜ç›®ï¼Œä»¥è¾¾åˆ°ä¸é‡å¤çš„æ•ˆæœ
     std::map<int, std::map<int, std::map<int, std::map<int, std::map<int, int> > > > >vis;
-    //½«Ã¿Ò»¸öÊ½×ÓÓÃÒ»¸övectorÊı×é´æ´¢
+    //å°†æ¯ä¸€ä¸ªå¼å­ç”¨ä¸€ä¸ªvectoræ•°ç»„å­˜å‚¨
     std::vector<std::vector<int> > res;
     while (n)
     {
@@ -41,7 +38,7 @@ std::vector<std::vector<int> >  naturalNumber(int n, int l, int r)
         if (vis[x][y][z][i][j]) continue;
         vis[x][y][z][i][j] = true;
         n--;
-        //Ëæ»úÉèÖÃÊÇ·ñÓĞÀ¨ºÅºÍÀ¨ºÅµÄÎ»ÖÃ
+        //éšæœºè®¾ç½®æ˜¯å¦æœ‰æ‹¬å·å’Œæ‹¬å·çš„ä½ç½®
         if (rand() % 2)
         {
             res.push_back({ x,-i - 1,y,-j - 1,z,-5 });
@@ -61,16 +58,17 @@ std::vector<std::vector<int> >  naturalNumber(int n, int l, int r)
     return res;
 }
 
+//ç”Ÿæˆåˆ†æ•°é¢˜ç›®
 std::vector<std::vector<int> > Fraction(int n, int Numerator, int denominator)
 {
-    //³õÊ¼»¯Ëæ»úÊıÉú³ÉÆ÷
+    //åˆå§‹åŒ–éšæœºæ•°ç”Ÿæˆå™¨
     srand(static_cast<unsigned int>(time(nullptr)));
 
 
-    //½«Ã¿Ò»¸öÊ½×ÓÓÃÒ»¸övectorÊı×é´æ´¢
+    //å°†æ¯ä¸€ä¸ªå¼å­ç”¨ä¸€ä¸ªvectoræ•°ç»„å­˜å‚¨
     std::vector<std::vector<int> > res;
 
-    //ÓÃmapÈİÆ÷À´±ê¼ÇÃ¿Ò»¸öÓÃ¹ıµÄÌâÄ¿£¬ÒÔ´ïµ½²»ÖØ¸´µÄĞ§¹û
+    //ç”¨mapå®¹å™¨æ¥æ ‡è®°æ¯ä¸€ä¸ªç”¨è¿‡çš„é¢˜ç›®ï¼Œä»¥è¾¾åˆ°ä¸é‡å¤çš„æ•ˆæœ
     std::map<int, std::map<int, std::map<int, std::map<int, std::map<int, std::map<int, std::map<int, std::map<int, int> > > > > > > >vis;
     while (n)
     {
@@ -85,7 +83,7 @@ std::vector<std::vector<int> > Fraction(int n, int Numerator, int denominator)
         vis[x1][x2][y1][y2][z1][z2][i][j] = true;
 
 
-        //Ëæ»úÉèÖÃÊÇ·ñÓĞÀ¨ºÅºÍÀ¨ºÅµÄÎ»ÖÃ
+        //éšæœºè®¾ç½®æ˜¯å¦æœ‰æ‹¬å·å’Œæ‹¬å·çš„ä½ç½®
         if (rand() % 2)
         {
             res.push_back({ x1,x2,-i - 1,y1,y2,-j - 1,z1,z2,-5 });
@@ -106,7 +104,7 @@ std::vector<std::vector<int> > Fraction(int n, int Numerator, int denominator)
     return res;
 }
 
-//½«Êı×Ö×ª»»Îª×Ö·û´®
+//å°†æ•°å­—è½¬æ¢ä¸ºå­—ç¬¦ä¸²
 std::string NumToString(long long num)
 {
     std::string res;
@@ -123,12 +121,12 @@ std::string NumToString(long long num)
     return res;
 }
 
-//ÓÃÕ·×ªÏà³ı·¨¼ÆËã×î´ó¹«Ô¼Êı£¬ÓÃÀ´¸ø·ÖÊı»¯¼ò
-int gcd(long long a, long long b) {
+//ç”¨è¾—è½¬ç›¸é™¤æ³•è®¡ç®—æœ€å¤§å…¬çº¦æ•°ï¼Œç”¨æ¥ç»™åˆ†æ•°åŒ–ç®€
+long long gcd(long long a, long long b) {
     return b == 0 ? a : gcd(b, a % b);
 }
 
-//½«·ÖÊı¸ù¾İ²»Í¬µÄÔËËã·û½øĞĞ¼ÆËã
+//å°†åˆ†æ•°æ ¹æ®ä¸åŒçš„è¿ç®—ç¬¦è¿›è¡Œè®¡ç®—
 void calculate(long long &fz, long long &fm, long long x, long long y, long long op)
 {
     if (op == -1)
@@ -161,7 +159,7 @@ void calculate(long long &fz, long long &fm, long long x, long long y, long long
     return;
 }
 
-//¼ÆËãÊ½×ÓµÄ½á¹û£¬²¢×ªÎª×Ö·û´®·µ»Ø
+//è®¡ç®—å¼å­çš„ç»“æœï¼Œå¹¶è½¬ä¸ºå­—ç¬¦ä¸²è¿”å›
 std::string GetAns(const std::vector<int> &Data)
 {
     std::string res = {};
@@ -170,7 +168,7 @@ std::string GetAns(const std::vector<int> &Data)
     for (int i = 0; i < len; i++)
     {
         tmp.push_back(Data[i]);
-        //½«ÕûÊı×ªÎª·ÖÊı
+        //å°†æ•´æ•°è½¬ä¸ºåˆ†æ•°
         if (Data[i] >= 0 && ((i == 0 && Data[i + 1] < 0) || (i != 0 && i + 1 != len && Data[i - 1] < 0 && Data[i + 1] < 0)))
         {
             tmp.push_back(1);
@@ -180,14 +178,17 @@ std::string GetAns(const std::vector<int> &Data)
     len = (int)tmp.size();
         
     long long fz = 1, fm = 1;
-    //¸ù¾İÀ¨ºÅËùÔÚµÄ²»Í¬Î»ÖÃ½øĞĞ¼ÆËã
+    //æ ¹æ®æ‹¬å·æ‰€åœ¨çš„ä¸åŒä½ç½®è¿›è¡Œè®¡ç®—
     if (tmp[len - 1] == -6)
     {
         //11/(11/11)
         fz = tmp[4];
         fm = tmp[5];
         calculate(fz, fm, tmp[7], tmp[8], tmp[6]);
-        calculate(fz, fm, tmp[0], tmp[1], tmp[2]);
+        int tfz = fz, tfm = fm;
+        fz = tmp[0];
+        fm = tmp[1];
+        calculate(fz, fm, tfz, tfm, tmp[2]);
     }
     else if (tmp[0] == -6)
     {
@@ -200,10 +201,23 @@ std::string GetAns(const std::vector<int> &Data)
     else
     {
         // 11/11/11
-        fz = tmp[0];
-        fm = tmp[1];
-        calculate(fz, fm, tmp[3], tmp[4], tmp[2]);
-        calculate(fz, fm, tmp[6], tmp[7], tmp[5]);
+        if (tmp[2] >= -2)
+        {
+            fz = tmp[3];
+            fm = tmp[4];
+            calculate(fz, fm, tmp[6], tmp[7], tmp[5]);
+            int tfz = fz, tfm = fm;
+            fz = tmp[0];
+            fm = tmp[1];
+            calculate(fz, fm, tfz, tfm, tmp[2]);
+        }
+        else
+        {
+            fz = tmp[0];
+            fm = tmp[1];
+            calculate(fz, fm, tmp[3], tmp[4], tmp[2]);
+            calculate(fz, fm, tmp[6], tmp[7], tmp[5]);
+        }
     }
     if (fz == 0 || fm == 0)
     {
@@ -225,7 +239,7 @@ std::string GetAns(const std::vector<int> &Data)
         fm *= -1;
         res += '-';
     }
-    //½«·ÖÊı×ª»»Îª´ø·ÖÊı
+    //å°†åˆ†æ•°è½¬æ¢ä¸ºå¸¦åˆ†æ•°
     if (fz / fm)
     {
         res += NumToString(fz / fm);
@@ -245,7 +259,7 @@ std::string GetAns(const std::vector<int> &Data)
     return res;
 }
 
-//¼ÆËãÊ½×ÓµÄ´ğ°¸£¬²¢½«Ê½×ÓºÍ´ğ°¸´ò°ü³ÉÒ»¸ö¿ÉÒÔÈÃÓÃ»§Ê¹ÓÃµÄÇ°¶Ë½çÃæ£¬½«html´úÂëÊä³ö´øÖ¸¶¨.htmlÎÄ¼ş
+//è®¡ç®—å¼å­çš„ç­”æ¡ˆï¼Œå¹¶å°†å¼å­å’Œç­”æ¡ˆæ‰“åŒ…æˆä¸€ä¸ªå¯ä»¥è®©ç”¨æˆ·ä½¿ç”¨çš„å‰ç«¯ç•Œé¢ï¼Œå°†htmlä»£ç è¾“å‡ºå¸¦æŒ‡å®š.htmlæ–‡ä»¶
 std::string Pack(const std::vector<std::vector<int> >& Data, const std::string& Title, std::ofstream &outputFile)
 {
     std::string res;
@@ -294,7 +308,7 @@ std::string Pack(const std::vector<std::vector<int> >& Data, const std::string& 
         int len = (int)arr.size();
         for (int i = 0; i < len; i++)
         {
-            //½«Ê½×Ó×ª»»³ÉLaTex¹«Ê½
+            //å°†å¼å­è½¬æ¢æˆLaTexå…¬å¼
             if (arr[i] >= 0)
             {
                 if (i != len - 1 && arr[i + 1] >= 0)
@@ -320,13 +334,13 @@ std::string Pack(const std::vector<std::vector<int> >& Data, const std::string& 
         outputFile <<"\\)</p>\n"
             "        <input type=\"text\" id=\"answer";
         outputFile <<NumToString(index);
-        outputFile <<"\" class=\"answer-input\" placeholder=\"ÇëÊäÈë´ğ°¸\">  \n"
+        outputFile <<"\" class=\"answer-input\" placeholder=\"è¯·è¾“å…¥ç­”æ¡ˆ\">  \n"
             "        <span class=\"feedback\" id=\"feedback";
         outputFile <<NumToString(index);
         outputFile <<"\"></span>  \n"
             "        <span class=\"show-correct-btn\" id=\"showCorrect";
         outputFile <<NumToString(index);
-        outputFile <<"\">²é¿´ÕıÈ·Ñ¡Ïî</span>  \n"
+        outputFile <<"\">æŸ¥çœ‹æ­£ç¡®é€‰é¡¹</span>  \n"
             "    </div>  ";
 
     }
@@ -348,48 +362,48 @@ std::string Pack(const std::vector<std::vector<int> >& Data, const std::string& 
         "            });  \n"
         "        });  \n"
         "  \n"
-        "        // ¼àÌı²é¿´ÕıÈ·Ñ¡ÏîµÄµã»÷ÊÂ¼ş  \n"
+        "        // ç›‘å¬æŸ¥çœ‹æ­£ç¡®é€‰é¡¹çš„ç‚¹å‡»äº‹ä»¶  \n"
         "        document.querySelectorAll('.show-correct-btn').forEach(function(btn) {  \n"
         "            btn.addEventListener('click', function() {  \n"
         "                showCorrectAnswer(btn);  \n"
         "            });  \n"
         "        });  \n"
         "  \n"
-        "        // ¼ì²é´ğ°¸ÊÇ·ñÕıÈ·  \n"
+        "        // æ£€æŸ¥ç­”æ¡ˆæ˜¯å¦æ­£ç¡®  \n"
         "        function checkAnswer(input) {  \n"
-        "            var index = parseInt(input.id.replace('answer', ''), 10) - 1; // »ñÈ¡ÎÊÌâµÄË÷Òı£¨Êı×éÏÂ±ê£©  \n"
+        "            var index = parseInt(input.id.replace('answer', ''), 10) - 1; // è·å–é—®é¢˜çš„ç´¢å¼•ï¼ˆæ•°ç»„ä¸‹æ ‡ï¼‰  \n"
         "            var feedbackElement = document.getElementById(input.id.replace('answer', 'feedback'));  \n"
         "  \n"
-        "            // Çå³ıÖ®Ç°µÄ·´À¡  \n"
+        "            // æ¸…é™¤ä¹‹å‰çš„åé¦ˆ  \n"
         "            feedbackElement.textContent = '';  \n"
         "            feedbackElement.classList.remove('correct', 'incorrect');  \n"
         "  \n"
-        "            // ¼ì²éË÷ÒıÊÇ·ñÔÚÊı×é·¶Î§ÄÚ  \n"
+        "            // æ£€æŸ¥ç´¢å¼•æ˜¯å¦åœ¨æ•°ç»„èŒƒå›´å†…  \n"
         "            if (index >= 0 && index < correctAnswers.length) {  \n"
-        "                // ±È½ÏÓÃ»§ÊäÈëºÍÕıÈ·´ğ°¸£¨È·±£¶¼ÊÇ×Ö·û´®ÀàĞÍ£©  \n"
+        "                // æ¯”è¾ƒç”¨æˆ·è¾“å…¥å’Œæ­£ç¡®ç­”æ¡ˆï¼ˆç¡®ä¿éƒ½æ˜¯å­—ç¬¦ä¸²ç±»å‹ï¼‰  \n"
         "                if (input.value.trim().toLowerCase() === correctAnswers[index].toLowerCase()) {  \n"
-        "                    feedbackElement.textContent = 'ÕıÈ·£¡';  \n"
+        "                    feedbackElement.textContent = 'æ­£ç¡®ï¼';  \n"
         "                    feedbackElement.classList.add('correct');  \n"
-        "                    feedbackElement.style.display = 'inline'; // ÏÔÊ¾·´À¡  \n"
+        "                    feedbackElement.style.display = 'inline'; // æ˜¾ç¤ºåé¦ˆ  \n"
         "                } else {  \n"
-        "                    feedbackElement.textContent = '´íÎó£¡';  \n"
+        "                    feedbackElement.textContent = 'é”™è¯¯ï¼';  \n"
         "                    feedbackElement.classList.add('incorrect');  \n"
-        "                    feedbackElement.style.display = 'inline'; // ÏÔÊ¾·´À¡  \n"
+        "                    feedbackElement.style.display = 'inline'; // æ˜¾ç¤ºåé¦ˆ  \n"
         "                }  \n"
         "            } else {  \n"
-        "                console.error('Ë÷Òı³¬³ö·¶Î§');  \n"
+        "                console.error('ç´¢å¼•è¶…å‡ºèŒƒå›´');  \n"
         "            }  \n"
         "        }  \n"
         "  \n"
-        "        // ÏÔÊ¾ÕıÈ·´ğ°¸  \n"
+        "        // æ˜¾ç¤ºæ­£ç¡®ç­”æ¡ˆ  \n"
         "        function showCorrectAnswer(btn) {  \n"
-        "            var index = parseInt(btn.id.replace('showCorrect', ''), 10) - 1; // »ñÈ¡ÎÊÌâµÄË÷Òı£¨Êı×éÏÂ±ê£©  \n"
+        "            var index = parseInt(btn.id.replace('showCorrect', ''), 10) - 1; // è·å–é—®é¢˜çš„ç´¢å¼•ï¼ˆæ•°ç»„ä¸‹æ ‡ï¼‰  \n"
         "  \n"
-        "            // ¼ì²éË÷ÒıÊÇ·ñÔÚÊı×é·¶Î§ÄÚ  \n"
+        "            // æ£€æŸ¥ç´¢å¼•æ˜¯å¦åœ¨æ•°ç»„èŒƒå›´å†…  \n"
         "            if (index >= 0 && index < correctAnswers.length) {  \n"
-        "                alert('ÎÊÌâ ' + (index + 1) + ' µÄÕıÈ·´ğ°¸ÊÇ£º' + correctAnswers[index]);  \n"
+        "                alert('é—®é¢˜ ' + (index + 1) + ' çš„æ­£ç¡®ç­”æ¡ˆæ˜¯ï¼š' + correctAnswers[index]);  \n"
         "            } else {  \n"
-        "                console.error('Ë÷Òı³¬³ö·¶Î§');  \n"
+        "                console.error('ç´¢å¼•è¶…å‡ºèŒƒå›´');  \n"
         "            }  \n"
         "        }  \n"
         "    </script>  \n"
@@ -402,16 +416,16 @@ std::string Pack(const std::vector<std::vector<int> >& Data, const std::string& 
 
 
 
-// »ñÈ¡ÎÄ¼şµØÖ·Ä¿Â¼
+// è·å–æ–‡ä»¶åœ°å€ç›®å½•
 TCHAR* GetFile()
 {
-    // ³õÊ¼»¯COM×é¼ş
+    // åˆå§‹åŒ–COMç»„ä»¶
     if (CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE) == S_FALSE)
     {
         return NULL;
     }
 
-    // ³õÊ¼»¯OPENFILENAME½á¹¹Ìå
+    // åˆå§‹åŒ–OPENFILENAMEç»“æ„ä½“
     OPENFILENAME ofn;
     TCHAR szFile[MAX_PATH] = { 0 };
 
@@ -429,17 +443,17 @@ TCHAR* GetFile()
     ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
 
     TCHAR* res = NULL;
-    // ÏÔÊ¾Save As¶Ô»°¿ò
+    // æ˜¾ç¤ºSave Aså¯¹è¯æ¡†
     if (GetSaveFileName(&ofn) == TRUE)
     {
-        res = (TCHAR*)malloc(sizeof(TCHAR) * _tcslen(ofn.lpstrFile));
+        res = (TCHAR*)malloc(sizeof(TCHAR) * (_tcslen(ofn.lpstrFile) + 1));
         if (res)
         {
-            _tcscpy(res, ofn.lpstrFile);
+            wcscpy_s(res, _tcslen(ofn.lpstrFile) + 1,ofn.lpstrFile);
         }
     }
 
-    // ÊÍ·ÅCOM×é¼ş
+    // é‡Šæ”¾COMç»„ä»¶
     CoUninitialize();
     return res;
 }
@@ -454,19 +468,19 @@ int main()
         do
         {
             system("cls");
-            std::cout << "ÓĞÁ½¸öÑ¡Ïî\n[1]Éú³É×ÔÈ»ÊıÌâÄ¿\n[2]Éú³É·ÖÊıÌâÄ¿\nÄãµÄÑ¡Ôñ£º";
+            std::cout << "æœ‰ä¸¤ä¸ªé€‰é¡¹\n[1]ç”Ÿæˆè‡ªç„¶æ•°é¢˜ç›®\n[2]ç”Ÿæˆåˆ†æ•°é¢˜ç›®\nä½ çš„é€‰æ‹©ï¼š";
             std::cin >> option;
         } while (option != 1 && option != 2);
 
 
         if (option == 1)
         {
-            //»ñÈ¡²ÎÊı
+            //è·å–å‚æ•°
             int n = -1, l = -1, r = -1;
             do
             {
                 system("cls");
-                std::cout << "ÇëÊäÈë3¸ö²ÎÊı£¬·Ö±ğ±íÊ¾£¬ÌâÄ¿µÄÊıÁ¿ ×ÔÈ»Êı·¶Î§µÄ×îĞ¡Öµ ×ÔÈ»Êı·¶Î§µÄ×î´óÖµ\nÃ¿¸öÊıÖ®¼äÓÃ¿Õ¸ñ¸ô¿ª\n";
+                std::cout << "è¯·è¾“å…¥3ä¸ªå‚æ•°ï¼Œåˆ†åˆ«è¡¨ç¤ºï¼Œé¢˜ç›®çš„æ•°é‡ è‡ªç„¶æ•°èŒƒå›´çš„æœ€å°å€¼ è‡ªç„¶æ•°èŒƒå›´çš„æœ€å¤§å€¼\næ¯ä¸ªæ•°ä¹‹é—´ç”¨ç©ºæ ¼éš”å¼€\n";
                 std::cin >> n >> l >> r;
             } while (n < 0 || l < 0 || r < 0);
             
@@ -477,23 +491,23 @@ int main()
             }
             std::ofstream outputFile(file);
 
-            //Éú³ÉÌâÄ¿ºÍ´ğ°¸
-            Pack(naturalNumber(n, l, r), "×ÔÈ»ÊıÌâÄ¿", outputFile);
+            //ç”Ÿæˆé¢˜ç›®å’Œç­”æ¡ˆ
+            Pack(naturalNumber(n, l, r), "è‡ªç„¶æ•°é¢˜ç›®", outputFile);
             outputFile.close();
 
-            //´ò¿ªÊäÈëµÄÎÄ¼ş
+            //æ‰“å¼€è¾“å…¥çš„æ–‡ä»¶
             ShellExecute(NULL, L"open", file, NULL, NULL, SW_SHOWNORMAL);
 
         }
         else
         {
 
-            //»ñÈ¡²ÎÊı
+            //è·å–å‚æ•°
             int n = -1, l = -1, r = -1;
             do
             {
                 system("cls");
-                std::cout << "ÇëÊäÈë3¸ö²ÎÊı£¬·Ö±ğ±íÊ¾£¬ÌâÄ¿µÄÊıÁ¿ ·Ö×ÓµÄ×î´óÖµ ·ÖÄ¸µÄ×î´óÖµ\nÃ¿¸öÊıÖ®¼äÓÃ¿Õ¸ñ¸ô¿ª\n";
+                std::cout << "è¯·è¾“å…¥3ä¸ªå‚æ•°ï¼Œåˆ†åˆ«è¡¨ç¤ºï¼Œé¢˜ç›®çš„æ•°é‡ åˆ†å­çš„æœ€å¤§å€¼ åˆ†æ¯çš„æœ€å¤§å€¼\næ¯ä¸ªæ•°ä¹‹é—´ç”¨ç©ºæ ¼éš”å¼€\n";
                 std::cin >> n >> l >> r;
             } while (n < 0 || l < 0 || r < 0);
             TCHAR* file = GetFile();
@@ -502,12 +516,12 @@ int main()
                 continue;
             }
 
-            //Éú³ÉÌâÄ¿ºÍ´ğ°¸
+            //ç”Ÿæˆé¢˜ç›®å’Œç­”æ¡ˆ
             std::ofstream outputFile(file);
-            Pack(Fraction(n, l, r), "·ÖÊıÌâÄ¿", outputFile);
+            Pack(Fraction(n, l, r), "åˆ†æ•°é¢˜ç›®", outputFile);
             outputFile.close();
 
-            //´ò¿ªÊäÈëµÄÎÄ¼ş
+            //æ‰“å¼€è¾“å…¥çš„æ–‡ä»¶
             ShellExecute(NULL, L"open", file, NULL, NULL, SW_SHOWNORMAL);
         }
     }
